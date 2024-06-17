@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.product-link').click(function(e) {
+                e.preventDefault();
+                var productId = $(this).data('product-id');
+                var servicesList = $(this).closest('.accordion-item').find('.services-list');
+
+                if (servicesList.is(':visible')) {
+                    servicesList.slideUp(); // Ẩn danh sách dịch vụ nếu đang hiển thị
+                } else {
+                    $.ajax({
+                        url: '/home/products/' + productId + '/',
+                        method: 'GET',
+                        success: function(data) {
+                            servicesList.empty(); // Xóa nội dung cũ
+                            var servicesContent = '<ul>';
+                            $.each(data.services, function(index, service) {
+                                servicesContent += '<li>' + service.name_service + ' - ' + service.coin + '</li>';
+                            });
+                            servicesContent += '</ul>';
+                            servicesList.html(servicesContent); // Thêm nội dung mới
+                            servicesList.slideDown(); // Hiển thị danh sách dịch vụ
+                        },
+                        error: function() {
+                            console.log('Failed to load services.');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container py-5">
+        <h2 class="text-center mb-5">Products</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-9 col-xxl-8">
+                <div class="accordion" id="accordionProducts">
+                    {% for product in products %}
+                        <div class="accordion-item shadow mb-2">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed fs-4 fw-bold product-link" type="button" data-product-id="{{ product.id }}">
+                                    {{ product.name_product }}
+                                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                                </button>
+                            </h3>
+                            <div class="accordion-collapse collapse services-list" aria-labelledby="heading{{ product.id }}" data-bs-parent="#accordionProducts" style="display: none;">
+                                <!-- Nội dung các dịch vụ sẽ được tải động bằng JavaScript -->
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

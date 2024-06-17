@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chi tiết đơn hàng</title>
+</head>
+<body>
+    <h1>Chi tiết đơn hàng</h1>
+    
+    <p><strong>Sản phẩm:</strong> {{ order.product.name_product }}</p>
+    <p><strong>Dịch vụ:</strong> {{ order.service.name_service }}</p>
+    <p><strong>Link:</strong> {{ order.link }}</p>
+    <p><strong>Người dùng:</strong> {{ order.user_name }}</p>
+    
+    <p><a href="{% url 'cart:choose_product_service' %}">Quay lại chọn sản phẩm và dịch vụ</a></p>
+</body>
+</html>

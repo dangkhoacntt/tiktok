@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+</head>
+<body>
+    <h1>Chat</h1>
+    <div>
+        {% for message in messages %}
+            <p><strong>{{ message.sender.username }}:</strong> {{ message.content }} <em>{{ message.timestamp }}</em></p>
+        {% endfor %}
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Send</button>
+    </form>
+</body>
+</html>

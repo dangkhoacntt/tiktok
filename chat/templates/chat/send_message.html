@@ -1,0 +1,17 @@
+<!-- chat/templates/chat/send_message.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gửi tin nhắn</title>
+</head>
+<body>
+    <h1>Gửi tin nhắn mới</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Gửi tin nhắn</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{% extends 'home/base.html' %}
+
+{% block title %}Statistics{% endblock %}
+{% block content %}
+<div class="container py-4 py-md-5 py-xl-6 mb-sm-4 mb-xxl-5">
+    <div class="col-lg-8 text-center mx-auto">
+        <h1 class="display-4">Our Service Statistics</h1>
+        <p class="lead">Here are some numbers from our services:</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row text-center">
+        <div class="col-md-4">
+            <h2>Số dịch vụ đã bán</h2>
+            <p>{{ services_sold }}</p>
+        </div>
+        <div class="col-md-4">
+            <h2>Số khách hàng đã sử dụng dịch vụ</h2>
+            <p>{{ customers_served }}</p>
+        </div>
+        <div class="col-md-4">
+            <h2>Số khách hàng sử dụng lại dịch vụ</h2>
+            <p>{{ repeat_customers }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

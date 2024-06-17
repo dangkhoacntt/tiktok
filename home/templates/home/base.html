@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Course - Boost Theme{% endblock %}</title>
+    <meta name="description" content="Boost is a clean and accessible theme for Bootstrap.">
+    <link rel="icon" href="{% static 'img/favicon.png' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300;0,400;0,700;1,400&amp;family=Merriweather:wght@400;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/bootstrap.js' %}" defer></script>
+</head>
+<body>
+<header>
+
+    <a href="#main" class="visually-hidden-focusable">Skip to main content</a>
+     
+  <nav class="navbar navbar-expand-lg py-3" aria-label="Main">
+    <a class='navbar-brand' href='/'>
+<img src="{% static 'img/tiktok.ico' %}" alt="Boost Theme" width="100" height="100">
+        </a>
+       {% if user.is_authenticated %}
+    <div class="navbar-nav my-3 my-lg-0 ms-auto">
+         
+        <a class="btn btn-primary btn-sm rounded-pill ms-lg-3" href="{% url 'qrpay' %}">Nạp coin</a>
+        <a class="btn btn-primary btn-sm rounded-pill ms-lg-3" href="{% url 'chat:chat_home' %}">Gửi fax </a>
+        <a class="btn btn-primary btn-sm rounded-pill ms-lg-3" href="{% url 'user_logout' %}">Logout</a>
+    </div>
+  
+    <p class='nav-link px-lg-3' href='style.html'>Xin chào, {{ user.username }}!</p>
+    <p class="nav-link px-lg-3">Số coin của bạn: {{ user.coin }}</p>
+{% else %}
+    <div class="navbar-nav my-3 my-lg-0 ms-auto">
+    </div>
+    <a class="btn btn-primary btn-sm rounded-pill ms-lg-3" href="{% url 'user_login' %}">Đăng nhập</a>
+    <a class="btn btn-primary btn-sm rounded-pill ms-lg-3" href="{% url 'user_register' %}">Đăng ký</a>
+{% endif %}
+ 
+    </nav>
+</header>
+<main id="main">
+    {% block content %}
+    {% endblock %}
+</main>
+<footer class="bg-primary text-white py-5">
+  {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-6 mx-auto">
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="py-5">
+        <!-- Comments section (move to content block if specific to course page) -->
+        {% block comments %}
+        {% endblock %}
+    </div>
+<footer class="pt-5">
+  {% load static %}
+  <div class="container">
+    <div class="row">
+ 
+      <div class="col-6 col-md-3 col-lg-2">
+        <h2 class="h5">Help</h2>
+        <ul class="list-unstyled mb-4">
+          <li class="mb-2"><a href="#" class="link-secondary text-decoration-none">FAQ</a></li>
+          <li class="mb-2"><a href="#" class="link-secondary text-decoration-none">Docs</a></li>
+          <li class="mb-2"><a href="#" class="link-secondary text-decoration-none">Tutorials</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md-3 col-lg-2">
+        <h2 class="h5">Contact</h2>
+        <ul class="list-unstyled mb-4">
+          <li class="mb-2"><a href="#" class="link-secondary text-decoration-none">Contact</a></li>
+          <li class="mb-2"><a href="#" class="link-secondary text-decoration-none">Email</a></li>
+          <li class="mb-2"><a href="#" class="link-secondary text-decoration-none">Chat</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-center gap-3 border-top py-3">
+ 
+      <ul class="list-inline mb-0">
+        <li class="list-inline-item">
+          <a class="icon icon-sm icon-secondary" href="#"><img src="{% static 'img/twitter.png' %}" alt="Twitter"></a>
+        </li>
+        <li class="list-inline-item">
+          <a class="icon icon-sm icon-secondary" href="#"><img src="{% static 'img/facebook.png' %}" alt="Facebook"></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+
+<!-- Mirrored from boost-theme.netlify.app/course by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 10 Jun 2024 02:18:06 GMT -->
+</html>

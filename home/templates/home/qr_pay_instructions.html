@@ -1,0 +1,38 @@
+{% extends 'home/base.html' %}
+
+{% block title %}Nạp coin{% endblock %}
+{% block content %}
+    <style>
+        .container {
+            max-width: 600px; /* Kích thước tối đa của khung */
+            margin: auto; /* Canh giữa khung */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            display: flex; /* Sử dụng flexbox để căn chỉnh */
+            align-items: center; /* Căn chỉnh các phần tử theo chiều dọc */
+            text-align: left; /* Căn lề văn bản sang trái */
+        }
+        .qr-image {
+            width: 100px; /* Kích thước mới của hình ảnh */
+            height: auto;
+            margin-right: 20px; /* Khoảng cách giữa hình ảnh và nội dung văn bản */
+        }
+        .instructions {
+            flex: 1; /* Để các dòng văn bản lấp đầy không gian còn lại */
+            margin-top: 20px;
+        }
+    </style>
+
+    <div class="container">
+    {% load static %}
+        <img src="{% static 'img/qrpay1.jpg' %}" alt="QR Pay" class="qr-image">
+        <div class="instructions">
+            <p>- Lưu ý khi chuyển khoản nhập đúng tên Đăng nhập (user)</p>
+            <p>- Bạn có thể gửi fax khi không nhận được số coin</p>
+            <p>- 1.000đ = 1 coin</p>
+            <p>- Giao dịch sẽ được admin hoàn thành sớm nhất</p>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+<!-- Trong templates/chat/admin_chat.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Chat</title>
+</head>
+<body>
+    <h2>Admin Chat</h2>
+    
+    <!-- Hiển thị tất cả các tin nhắn -->
+    {% for message in messages %}
+        <div>
+            <strong>{{ message.sender }}:</strong> {{ message.content }}
+            <small>{{ message.timestamp }}</small>
+        </div>
+    {% endfor %}
+    
+    <!-- Form gửi tin nhắn của admin -->
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Send</button>
+    </form>
+</body>
+</html>

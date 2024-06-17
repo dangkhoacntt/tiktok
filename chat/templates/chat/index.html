@@ -1,0 +1,50 @@
+{% extends 'home/base.html' %}
+
+{% block title %}Trang tin nhắn{% endblock %}
+
+{% block content %}
+    <h1>Tin nhắn của bạn</h1>
+    <div class="message-form">
+        <h2>Gửi tin nhắn mới</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Gửi tin nhắn</button>
+        </form>
+    </div>
+    <div class="message-form">
+    <ul class="message-list">
+    <h2>Lịch sử</h2>
+        {% for message in messages %}
+            <li>
+                <strong>{{ message.sender }}:</strong> {{ message.content }}
+                <span>{{ message.timestamp }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+        </div>
+{% endblock %}
+
+{% block styles %}
+    <style>
+        .message-form {
+            margin-bottom: 20px;
+        }
+        .message-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .message-list li {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+        }
+        .message-list strong {
+            color: #333;
+        }
+        .message-list span {
+            font-size: 0.8em;
+            color: #999;
+        }
+    </style>
+{% endblock %}

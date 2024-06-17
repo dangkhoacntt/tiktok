@@ -1,0 +1,52 @@
+{% extends 'home/base.html' %}
+
+{% block title %}Chọn sản phẩm và dịch vụ{% endblock %}
+
+{% block content %}
+    <h2 class="text-center mb-5">Chọn sản phẩm và dịch vụ</h2>
+    
+    <form method="post" action="{% url 'cart:create_order' %}">
+        {% csrf_token %}
+        
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="product_id">Chọn sản phẩm:</label>
+                    <select name="product_id" id="product_id" class="form-control">
+                        {% for product in products %}
+                            <option value="{{ product.id }}">{{ product.name_product }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="service_id">Chọn dịch vụ:</label>
+                    <select name="service_id" id="service_id" class="form-control">
+                        {% for service in services %}
+                            <option value="{{ service.id }}">{{ service.name_service }} - {{ service.product.name_product }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="link">Link:</label>
+                    <input type="text" id="link" name="link" class="form-control">
+                </div>
+            </div>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+                <button type="submit" class="btn btn-primary">Mua hàng</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}
